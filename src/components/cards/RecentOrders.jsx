@@ -1,9 +1,18 @@
-import Card from "../Card"
+import { useEffect, useState } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import Card from "../Card";
+import { supabase } from "../../supabaseClient";
 
 export default function RecentOrders() {
-    return (
-        <Card title="Recent Orders" button="View All">
-            <p className="card-detail">0</p>
-        </Card>
-    )
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        async function fetchOrders() {
+            const { data, error } = await supabase
+                .from("orders")
+                .select("client_id, part_id, quantity, status, created_at")
+                .order("created_at", { ascending: false })
+                .limit(5);
+        }
+    })
 }

@@ -23,7 +23,7 @@ export default function Dashboard() {
             <div className="container-inline">
                 <OrdersGraph />
                 
-                <div style={{ flex: 0.5 }}>
+                <div style={{ flex: 0.5, display: "flex", flexDirection: "column", gap: "20px" }}>
                     <QuickActions />
                     <LowStockAlerts />
                 </div>
