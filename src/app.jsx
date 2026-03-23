@@ -1,9 +1,5 @@
-import ClientForm from "./components/clientForm";
+import Dashboard from "./pages/dashboard";
 
 export default function App() {
-  return (
-    <div>
-      <ClientForm />
-    </div>
-  );
+  return <Dashboard />;
 }

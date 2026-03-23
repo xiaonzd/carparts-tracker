@@ -1,0 +1,41 @@
+import MonthlyRevenue from "../components/cards/MontlyRevenue";
+import QuickActions from "../components/cards/QuickActions"
+import LowStockAlerts from "../components/cards/LowStockAlerts";
+import OrdersGraph from "../components/cards/OrdersGraph";
+import OrdersThisMonth from "../components/cards/OrdersThisMonth";
+import ActiveClients from "../components/cards/ActiveClients";
+import PartsInStock from "../components/cards/PartsInStock";
+import RecentOrders from "../components/cards/RecentOrders";
+import Header from "../components/Header";
+
+export default function Dashboard() {
+    return (
+
+        <div style={DashboardGrid}>
+            <Header />
+            <div className="container-inline">
+                <MonthlyRevenue />
+                <OrdersThisMonth /> 
+                <ActiveClients />
+                <PartsInStock />
+            </div>
+
+            <div className="container-inline">
+                <OrdersGraph />
+                
+                <div style={{ flex: 0.5 }}>
+                    <QuickActions />
+                    <LowStockAlerts />
+                </div>
+            </div>
+
+            <RecentOrders />
+        </div>
+    )
+}
+
+const DashboardGrid = {
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: "20px"
+}
