@@ -47,7 +47,7 @@ export default function PartsInStock() {
         <Card title="Parts In Stock" icon={<BsBoxSeam />}>
             <div className="container-inline-close">
                 <h2 className="title">{partsInStock.toLocaleString()}</h2>
-                <p className="card-detail red">-{monthlyOrdersQuantity.toLocaleString()}</p>
+                <p className={`card-detail ${monthlyOrdersQuantity === 0 ? "green" : "red"}`}>-{monthlyOrdersQuantity.toLocaleString()}</p>
             </div>
         </Card>
     );
