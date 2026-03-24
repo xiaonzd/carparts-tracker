@@ -14,5 +14,5 @@ export default function RecentOrders() {
                 .order("created_at", { ascending: false })
                 .limit(5);
         }
-    })
+    }, []);
 }
