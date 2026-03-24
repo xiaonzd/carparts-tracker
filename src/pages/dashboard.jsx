@@ -3,7 +3,7 @@ import QuickActions from "../components/cards/QuickActions"
 import LowStockAlerts from "../components/cards/LowStockAlerts";
 import OrdersGraph from "../components/cards/OrdersGraph";
 import OrdersThisMonth from "../components/cards/OrdersThisMonth";
-import ActiveClients from "../components/cards/ActiveClients";
+import Clients from "../components/cards/Clients";
 import PartsInStock from "../components/cards/PartsInStock";
 import RecentOrders from "../components/cards/RecentOrders";
 import Header from "../components/Header";
@@ -16,7 +16,7 @@ export default function Dashboard() {
             <div className="container-inline">
                 <MonthlyRevenue />
                 <OrdersThisMonth /> 
-                <ActiveClients />
+                <Clients />
                 <PartsInStock />
             </div>
 
