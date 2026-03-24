@@ -30,7 +30,7 @@ export default function ClientForm({ onClose }) {
     return (
         <div className="overlay">
             <div className="modal">
-                <h2 className="title">Create Client</h2>
+                <h2 className="title">New Client</h2>
 
                 <button className="close-button" onClick={onClose}>
                 ✕

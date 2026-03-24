@@ -36,7 +36,7 @@ export default function PartForm({ onClose }) {
     return (
         <div className="overlay">
             <div className="modal">
-                <h2 className="title">Create Part</h2>
+                <h2 className="title">New Part</h2>
 
                 <button className="close-button" onClick={onClose}>
                 ✕

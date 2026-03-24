@@ -74,8 +74,6 @@ form button {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 20px;
-
   flex: 1;
 }
 
@@ -182,6 +180,7 @@ form button {
   display: block;
   margin-bottom: 5px;
   color: rgb(237, 235, 233);
+  font-size: 14px;
 }
 
 .form-input {

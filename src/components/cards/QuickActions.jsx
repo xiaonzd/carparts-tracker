@@ -3,6 +3,9 @@ import ClientForm from "../ClientForm";
 import PartForm from "../PartForm";
 import OrderForm from "../OrderForm";
 import Card from "../Card";
+import { BsCart2 } from "react-icons/bs";
+import { BsPeople } from "react-icons/bs";
+import { BsBoxSeam } from "react-icons/bs";
 
 export default function QuickActions() {
     const [showClientForm, setShowClientForm] = useState(false);
@@ -13,15 +16,15 @@ export default function QuickActions() {
         <>
             <Card title="Quick Actions">
                 <button className="button orange" onClick={() => setShowOrderForm(true)}>
-                    Create Order
+                    <BsCart2 style={icon} />New Order
                 </button>
 
                 <button className="button" onClick={() => setShowClientForm(true)}>
-                    Create Client
+                    <BsPeople style={icon} />New Client
                 </button>
 
                 <button className="button" onClick={() => setShowPartForm(true)}>
-                    Create Part
+                    <BsBoxSeam style={icon} />New Part
                 </button>
 
                 {showOrderForm && (
@@ -39,4 +42,8 @@ export default function QuickActions() {
 
         </>
     );
+}
+
+const icon = {
+    marginRight: "8px"
 }
