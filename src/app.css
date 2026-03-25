@@ -118,6 +118,13 @@ form button {
   margin: 0;
 }
 
+.card-text-regular {
+  color: rgb(237, 235, 233);
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
 .card-detail {
   color: rgb(115, 123, 140);
   font-size: 12px;

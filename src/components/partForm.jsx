@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { supabase } from "../supabaseClient";
 
-export default function PartForm({ onClose }) {
+export default function PartForm({ onClose, onSuccess }) {
     const [name, setName] = useState("");
     const [brand, setBrand] = useState("");
     const [price, setPrice] = useState(0);
@@ -23,6 +23,9 @@ export default function PartForm({ onClose }) {
             console.log("Error creating part:", error);
             return;
         }
+
+        onClose();
+        onSuccess(true);
 
         // clear the form after submission
         setName("");

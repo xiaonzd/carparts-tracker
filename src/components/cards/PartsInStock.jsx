@@ -25,18 +25,18 @@ export default function PartsInStock() {
             const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).toISOString();
             const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0, 23, 59, 59).toISOString();
 
-            const { data: ordersData, error: ordersError } = await supabase
-                .from("orders")
-                .select("quantity, created_at")
-                .gte("created_at", startOfMonth)
-                .lte("created_at", endOfMonth);
+            const { data: orderPartsData, error: orderPartsError } = await supabase
+                .from("order_parts")
+                .select(`quantity, orders!inner(created_at)`)
+                .gte("orders.created_at", startOfMonth)
+                .lte("orders.created_at", endOfMonth);
 
-            if (ordersError) {
-                console.log("Error fetching orders:", ordersError);
+            if (orderPartsError) {
+                console.log("Error fetching orders:", orderPartsError);
                 return;
             }
 
-            const totalQuantity = ordersData.reduce((sum, order) => sum + (order.quantity || 0), 0);
+            const totalQuantity = orderPartsData.reduce((sum, item) => sum + (item.quantity || 0), 0);
             setMonthlyOrdersQuantity(totalQuantity);
         };
 

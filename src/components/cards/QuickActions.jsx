@@ -3,40 +3,63 @@ import ClientForm from "../ClientForm";
 import PartForm from "../PartForm";
 import OrderForm from "../OrderForm";
 import Card from "../Card";
-import { BsCart2 } from "react-icons/bs";
-import { BsPeople } from "react-icons/bs";
-import { BsBoxSeam } from "react-icons/bs";
+import { BsCart2, BsPeople, BsBoxSeam, BsCheck2 } from "react-icons/bs";
+import SuccessPopUp from "../SuccessPopUp";
 
 export default function QuickActions() {
-    const [showClientForm, setShowClientForm] = useState(false);
-    const [showPartForm, setShowPartForm] = useState(false);
-    const [showOrderForm, setShowOrderForm] = useState(false);
+    const [activeForm, setActiveForm] = useState(null); 
+    const [successForm, setSuccessForm] = useState(null);
 
     return (
         <>
             <Card title="Quick Actions">
-                <button className="button orange" onClick={() => setShowOrderForm(true)}>
+                <button className="button orange" onClick={() => setActiveForm("order")}>
                     <BsCart2 style={icon} />New Order
                 </button>
 
-                <button className="button" onClick={() => setShowClientForm(true)}>
+                <button className="button" onClick={() => setActiveForm("client")}>
                     <BsPeople style={icon} />New Client
                 </button>
 
-                <button className="button" onClick={() => setShowPartForm(true)}>
+                <button className="button" onClick={() => setActiveForm("part")}>
                     <BsBoxSeam style={icon} />New Part
                 </button>
 
-                {showOrderForm && (
-                <OrderForm onClose={() => setShowOrderForm(false)} />
+                {activeForm === "client" && (
+                    <ClientForm
+                        onClose={() => setActiveForm(null)}
+                        onSuccess={() => {
+                            setActiveForm(null);    // close form
+                            setSuccessForm("client"); // show success
+                        }}
+                    />
                 )}
 
-                {showClientForm && (
-                <ClientForm onClose={() => setShowClientForm(false)} />
+                {activeForm === "order" && (
+                    <OrderForm
+                        onClose={() => setActiveForm(null)}
+                        onSuccess={() => setSuccessForm("order")}
+                    />
                 )}
 
-                {showPartForm && (
-                <PartForm onClose={() => setShowPartForm(false)} />
+                {activeForm === "part" && (
+                    <PartForm
+                        onClose={() => setActiveForm(null)}
+                        onSuccess={() => setSuccessForm("part")}
+                    />
+                )}
+
+                {successForm && (
+                    <SuccessPopUp
+                        icon={<BsCheck2 />}
+                        title="Success!"
+                        message={
+                            successForm === "client" ? "Client added successfully." :
+                            successForm === "order" ? "Order added successfully." :
+                            "Part added successfully."
+                        }
+                        onClose={() => setSuccessForm(null)}
+                    />
                 )}
             </Card>
 

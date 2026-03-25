@@ -1,10 +1,11 @@
-export default function SuccessPopUp({ message, onClose }) {
+export default function SuccessPopUp({ icon, title, message, onClose }) {
     return (
         <div className="overlay">
             <div className="modal">
-                <h2 className="title">{message}</h2>
-                <button className="button" onClick={onClose}>
-                    Close
+                <h2 className="title"><span>{icon}</span>{title}</h2>
+                <p className="card-text-regular">{message}</p>
+                <button className="close-button" onClick={onClose}>
+                ✕
                 </button>
             </div>
         </div>

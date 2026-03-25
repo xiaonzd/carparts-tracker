@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-export default function ClientForm({ onClose }) {
+export default function ClientForm({ onClose, onSuccess }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -20,6 +20,9 @@ export default function ClientForm({ onClose }) {
             console.log("Error creating client:", error);
             return;
         }
+
+        onClose();
+        onSuccess(true);
 
         // clear the form after submission
         setName("");
