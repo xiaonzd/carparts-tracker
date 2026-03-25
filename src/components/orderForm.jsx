@@ -3,9 +3,7 @@ import { supabase } from "../supabaseClient";
 
 export default function PartForm({ onClose, onSuccess }) {
     const [clientId, setClientId] = useState("");
-    const [items, setItems] = useState([
-        { partId: "", quantity: 1 }
-    ]);
+    const [items, setItems] = useState([{ partId: "", quantity: 1 }]);
     const [status, setStatus] = useState("Processing");
     const [clients, setClients] = useState([]);
     const [parts, setParts] = useState([]);

@@ -10,11 +10,10 @@ export default function ClientForm({ onClose, onSuccess }) {
         e.preventDefault(); // prevent refreshing the page on submit
 
         const { error } = await supabase
-        .from("clients")
-        .insert([
-            { name, email, phone }
-        ]);
-        //.select();
+            .from("clients")
+            .insert([
+                { name, email, phone }
+            ]);
 
         if (error) {
             console.log("Error creating client:", error);
