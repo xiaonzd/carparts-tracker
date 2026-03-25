@@ -4,6 +4,13 @@ body {
   padding-inline: 140px;
 }
 
+.MuiChartsTooltip-root * {
+  background-color: rgb(21, 24, 30) !important;
+  border-radius: 8px !important;
+  color: rgb(209, 206, 199) !important;
+  font-family: 'Poppins' !important;
+}
+
 .button {
   padding: 10px 20px;
   border-radius: 8px;
