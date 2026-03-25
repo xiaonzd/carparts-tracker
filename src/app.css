@@ -11,6 +11,19 @@ body {
   font-family: 'Poppins' !important;
 }
 
+.MuiDataGrid-cell {
+  border-top: none !important;
+}
+
+.MuiDataGrid-columnHeader:focus,
+.css-bw2yt4-MuiDataGrid-root .MuiDataGrid-cell:focus {
+  outline: none !important;
+}
+
+.MuiTablePagination-selectIcon {
+  color: rgb(209, 206, 199) !important;
+}
+
 .button {
   padding: 10px 20px;
   border-radius: 8px;
