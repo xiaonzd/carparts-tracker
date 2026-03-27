@@ -1,5 +1,5 @@
-import { useLocation, Link } from "react-router-dom";
-import { BsCart2, BsPeople, BsSpeedometer2 } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
+import { BsCart2, BsPeople, BsSpeedometer2, BsBoxSeam } from "react-icons/bs";
 
 export default function Header( {title} ) {
     const location = useLocation();
@@ -21,6 +21,11 @@ export default function Header( {title} ) {
                 {location.pathname !== "/clients" && (
                     <button className="button" onClick={() => window.location.href = "/clients"}>
                         <BsPeople style={icon} />All Clients
+                    </button>
+                )}
+                {location.pathname !== "/parts" && (
+                    <button className="button" onClick={() => window.location.href = "/parts"}>
+                        <BsBoxSeam style={icon} />All Parts
                     </button>
                 )}
             </div>
