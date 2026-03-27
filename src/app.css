@@ -42,6 +42,7 @@ body {
   background: rgb(30, 34, 41);
   color: rgb(209, 206, 199);
   transition: background 0.2s;
+  cursor: pointer;
 }
 
 .button:hover,
