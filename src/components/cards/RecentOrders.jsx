@@ -25,12 +25,19 @@ export default function RecentOrders() {
                 return `${day}/${month}/${year}`;
             }
 
+            const formattedPrice = (price) => {
+                return new Intl.NumberFormat("pt-PT", {
+                    style: "currency",
+                    currency: "EUR",
+                }).format(price);
+            }
+
             const formattedRows = data.map((order) => ({
                 id: order.id,
                 client: order.clients.name,
                 created_at: formattedDate(order.created_at),
                 status: order.status,
-                total_price: order.total_price,
+                total_price: formattedPrice(order.total_price),
                 parts: order.order_parts.map((op) => op.parts.name).join(", "),
             }));
 
@@ -55,9 +62,12 @@ export default function RecentOrders() {
                     pagination: { paginationModel: { pageSize: 10 } },
                 }}
                 pageSizeOptions={[10, 25, 50, 100, { value: -1, label: 'All' }]}
-                checkboxSelection
+                disableCheckboxSelection
                 disableColumnResize
                 disableRowSelectionOnClick
+                disableColumnSelector
+                disableColumnFilter
+                disableColumnMenu
                 sx={{
                     backgroundColor: "rgb(21, 24, 30)",
                     color: "rgb(202, 202, 202)",

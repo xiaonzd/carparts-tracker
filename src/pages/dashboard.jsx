@@ -37,5 +37,6 @@ export default function Dashboard() {
 const DashboardGrid = {
     display: "grid",
     gridTemplateColumns: "1fr",
-    gap: "20px"
+    gap: "20px",
+    paddingBottom: "20px"
 }

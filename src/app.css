@@ -24,6 +24,10 @@ body {
   color: rgb(209, 206, 199) !important;
 }
 
+.MuiSvgIcon-root {
+  color: rgb(209, 206, 199) !important;
+}
+
 .button {
   padding: 10px 20px;
   border-radius: 8px;
