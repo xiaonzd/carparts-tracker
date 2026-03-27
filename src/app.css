@@ -35,6 +35,10 @@ body {
   color: rgb(209, 206, 199) !important;
 }
 
+.MuiDataGrid-overlay {
+  background-color: unset !important;
+}
+
 .button {
   padding: 10px 20px;
   border-radius: 8px;
