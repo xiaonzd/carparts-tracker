@@ -11,8 +11,8 @@ import Header from "../components/Header";
 export default function Dashboard() {
     return (
 
-        <div style={DashboardGrid}>
-            <Header />
+        <div className="page-grid">
+            <Header title="CarParts Tracker" />
             <div className="container-inline">
                 <MonthlyRevenue />
                 <OrdersThisMonth /> 
@@ -32,11 +32,4 @@ export default function Dashboard() {
             <RecentOrders />
         </div>
     )
-}
-
-const DashboardGrid = {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gap: "20px",
-    paddingBottom: "20px"
 }
