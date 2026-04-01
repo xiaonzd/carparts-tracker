@@ -37,7 +37,7 @@ export default function LowStockAlerts() {
                                 <p className="card-detail">{part.ref}</p>
                             </div>
 
-                            <div style={partDetails}>
+                            <div style={partStock}>
                                 <p className="card-text red">{part.stock} left</p>
                                 <p className="card-detail">Min: {part.min_stock}</p>
                             </div>
@@ -52,6 +52,13 @@ export default function LowStockAlerts() {
 const partDetails = {
     display: "flex",
     flexDirection: "column",
+    width: "90%",
+}
+
+const partStock = {
+    display: "flex",
+    flexDirection: "column",
+    width: "10%",
 }
 
 const LowStockList = {
