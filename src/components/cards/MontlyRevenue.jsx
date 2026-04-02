@@ -18,10 +18,6 @@ export default function MonthlyrevenueThisMonth() {
                 return;
             }
 
-            const totalRevenueThisMonth = data.reduce((sum, order) => sum + order.total_price, 0);
-
-            setRevenueThisMonth(totalRevenueThisMonth);
-
             const now = new Date();
             const currentMonth = now.getMonth();
             const currentYear = now.getFullYear();
@@ -29,38 +25,30 @@ export default function MonthlyrevenueThisMonth() {
             const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
             const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
 
-            const revenueThisMonth = data.filter(order => {
+            const thisMonthOrders = data.filter(order => {
                 const created = new Date(order.created_at);
-
-                return (
-                    created.getMonth() === currentMonth &&
-                    created.getFullYear() === currentYear
-                );
+                return created.getMonth() === currentMonth && created.getFullYear() === currentYear;
             });
 
-            const revenueLastMonth = data.filter(order => {
+            const lastMonthOrders = data.filter(order => {
                 const created = new Date(order.created_at);
-
-                return (
-                    created.getMonth() === lastMonth &&
-                    created.getFullYear() === lastMonthYear
-                );
+                return created.getMonth() === lastMonth && created.getFullYear() === lastMonthYear;
             });
+
+            const revenueThisMonthTotal = thisMonthOrders.reduce((sum, order) => sum + Number(order.total_price), 0);
+            const revenueLastMonthTotal = lastMonthOrders.reduce((sum, order) => sum + Number(order.total_price), 0);
+
+            setRevenueThisMonth(revenueThisMonthTotal);
 
             let growPercent = 0;
-
-            if (revenueLastMonth.length === 0) {
-                if (revenueThisMonth.length > 0) {
-                    growPercent = 100;
-                } else {
-                    growPercent = 0;
-                }
+            if (revenueLastMonthTotal === 0) {
+                growPercent = revenueThisMonthTotal > 0 ? 100 : 0;
             } else {
-                growPercent = ((revenueThisMonth.length - revenueLastMonth.length) / revenueLastMonth.length) * 100;
+                growPercent = ((revenueThisMonthTotal - revenueLastMonthTotal) / revenueLastMonthTotal) * 100;
             }
 
             setGrowth(growPercent);
-        }
+        };
         
         fetchrevenueThisMonth();
 
