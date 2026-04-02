@@ -183,7 +183,7 @@ export default function PartForm({ onClose, onSuccess }) {
                         </button>
                     </div>
                     <div style={{ marginBottom: "15px", marginTop: "15px" }}>
-                        <p className="form-label">Total Price: {totalPrice}€</p>
+                        <p className="form-label">Total Price: {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR' }).format(totalPrice)}€</p>
                     </div>
                     <div style={{marginBottom: "15px"}}>
                         <label className="form-label" htmlFor="status">Status</label>
