@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Select from "react-select";
+import { reactSelectStyles } from "../components/reactSelectStyles";
 import { supabase } from "../supabaseClient";
 
 export default function PartForm({ onClose, onSuccess }) {
@@ -8,6 +10,11 @@ export default function PartForm({ onClose, onSuccess }) {
     const [clients, setClients] = useState([]);
     const [parts, setParts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const optionsStatus = [
+        { value: "Processing", label: "Processing" },
+        { value: "Shipped", label: "Shipped" },
+        { value: "Delivered", label: "Delivered" },
+    ];
     const handleItemChange = (index, field, value) => {
         const newItems = [...items];
         newItems[index][field] = value;
@@ -130,25 +137,26 @@ export default function PartForm({ onClose, onSuccess }) {
                         </select>
                     </div>
                     <div style={{ display: "flex" }}>
-                        <div style={{ flex: 1 }}><p className="form-label">Part</p></div>
+                        <div style={{ flex: "1" }}><p className="form-label">Part</p></div>
                         <div style={{ width: "100px" }}><p className="form-label">Quantity</p></div>
                     </div>
                     {items.map((item, index) => (
                         <div key={index} style={{ marginBottom: "15px", display: "flex", gap: "10px", alignItems: "flex-end" }}>
                             <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-                                <select
-                                    className="form-input"
-                                    value={item.partId}
-                                    onChange={(e) => handleItemChange(index, "partId", e.target.value)}
-                                    required
-                                >
-                                    <option value="">Select a part</option>
-                                    {parts.map((part) => (
-                                        <option key={part.id} value={part.id}>
-                                            {part.brand} - {part.name} (Stock: {part.stock}, Price: {part.price || 0}€)
-                                        </option>
-                                    ))}
-                                </select>
+                                <Select
+                                    value={parts.find(p => p.id === item.partId) || null}
+                                    onChange={(selected) => handleItemChange(index, "partId", selected.id)}
+                                    options={parts.map(part => ({
+                                    value: part.id,
+                                    label: `${part.brand} - ${part.name} (Stock: ${part.stock}, Price: ${part.price || 0}€)`
+                                    }))}
+                                    placeholder="Select a part"
+                                    isSearchable={true}
+                                    components={{
+                                        IndicatorSeparator: () => null
+                                    }}
+                                    styles={reactSelectStyles}
+                                />
                             </div>
 
                             <div style={{ display: "flex", flexDirection: "column", width: "100px" }}>  
@@ -185,14 +193,21 @@ export default function PartForm({ onClose, onSuccess }) {
                     <div style={{ marginBottom: "15px", marginTop: "15px" }}>
                         <p className="form-label">Total Price: {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR' }).format(totalPrice)}€</p>
                     </div>
-                    <div style={{marginBottom: "15px"}}>
-                        <label className="form-label" htmlFor="status">Status</label>
-                        <select className="form-input" htmlFor="status" name="status" value={status} onChange={(e) => setStatus(e.target.value)} required>
-                            <option value="processing">Processing</option>
-                            <option value="shipped">Shipped</option>
-                            <option value="delivered">Delivered</option>
-                        </select>
+
+                    <div style={{ marginBottom: "15px" }}>
+                        <p className="form-label">Status</p>
+                        <Select
+                            name="status"
+                            options={optionsStatus}
+                            value={optionsStatus.find(option => option.value === status)}
+                            onChange={(selected) => setStatus(selected.value)}
+                            components={{
+                                IndicatorSeparator: () => null
+                            }}
+                            styles={reactSelectStyles}
+                        />
                     </div>
+
                     <button className="button orange" type="submit">Create</button>
                 </form>
             </div>

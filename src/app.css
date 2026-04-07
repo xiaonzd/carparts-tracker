@@ -247,4 +247,6 @@ select.form-input {
   border-width: 1px;
   background: rgb(30, 34, 41);
   color: rgb(209, 206, 199);
+  font-size: 14px;
+  font-family: Poppins;
 }
