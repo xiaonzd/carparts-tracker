@@ -57,7 +57,7 @@ export default function MonthlyrevenueThisMonth() {
     return (
         <Card title="Monthly Revenue" icon={<BsCurrencyEuro />}>
             <div className="container-inline-close">
-                <h2 className="title">{revenueThisMonth}€</h2>
+                <h2 className="title">{revenueThisMonth.toFixed(2)}€</h2>
                 <p className={`card-detail ${growth >= 0 ? "green" : "red"}`}>
                     {growth >= 0 ? "+" : ""}
                     {Number.isInteger(growth) ? growth : growth.toFixed(1)}%</p>
