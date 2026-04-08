@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import { reactSelectStyles } from "../components/reactSelectStyles";
 import { supabase } from "../supabaseClient";
+import { data } from "react-router-dom";
 
 export default function PartForm({ onClose, onSuccess }) {
     const [clientId, setClientId] = useState("");
@@ -23,23 +24,38 @@ export default function PartForm({ onClose, onSuccess }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const [clientsResponse, partsResponse] = await Promise.all([
+            const [
+                {data: clientsData, error: clientsError },
+                { data: partsData, error: partsError }
+            ] = await Promise.all([
                 supabase.from("clients").select("id, name"),
                 supabase.from("parts").select("id, name, brand, price, stock")
             ]);
 
-            if (clientsResponse.error) {
-                console.log("Error fetching clients:", clientsResponse.error);
+            if (clientsError) {
+                console.log("Error fetching clients:", clientsError);
                 return;
             }
 
-            if (partsResponse.error) {
-                console.log("Error fetching parts:", partsResponse.error);
+            if (partsError) {
+                console.log("Error fetching parts:", partsError);
                 return;
             }
 
-            setClients(clientsResponse.data);
-            setParts(partsResponse.data);
+            const optionsClients = clientsData.map(client => ({
+                value: client.id,
+                label: client.name
+            }));
+
+            const optionsParts = partsData.map(part => ({
+                value: part.id,
+                label: `${part.name} (${part.brand})`,
+                price: part.price,
+                stock: part.stock
+            }));
+
+            setClients(optionsClients);
+            setParts(optionsParts);
         };
 
         fetchData();
@@ -126,15 +142,19 @@ export default function PartForm({ onClose, onSuccess }) {
 
                 <form onSubmit={handleSubmit}>
                     <div style={{marginBottom: "15px"}}>
-                        <label className="form-label" htmlFor="clientId">Client</label>
-                        <select className="form-input" name="clientId" value={clientId} onChange={(e) => setClientId(e.target.value)} required>
-                            <option value="">Select a client</option>
-                            {clients.map((client) => (
-                                <option key={client.id} value={client.id}>
-                                    {client.name}
-                                </option>
-                            ))}
-                        </select>
+                        <p className="form-label">Client</p>
+                        <Select
+                            name="client"
+                            options={clients}
+                            value={clients.find(client => client.value === clientId)}
+                            onChange={(selected) => setClientId(selected.value)}
+                            components={{
+                                IndicatorSeparator: () => null
+                            }}
+                            styles={reactSelectStyles}
+                        />
+                
+
                     </div>
                     <div style={{ display: "flex" }}>
                         <div style={{ flex: "1" }}><p className="form-label">Part</p></div>
