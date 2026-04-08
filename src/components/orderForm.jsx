@@ -148,13 +148,14 @@ export default function PartForm({ onClose, onSuccess }) {
                             options={clients}
                             value={clients.find(client => client.value === clientId)}
                             onChange={(selected) => setClientId(selected.value)}
+                            placeholder="Select a client"
+                            isSearchable={true}
                             components={{
                                 IndicatorSeparator: () => null
                             }}
                             styles={reactSelectStyles}
                         />
                 
-
                     </div>
                     <div style={{ display: "flex" }}>
                         <div style={{ flex: "1" }}><p className="form-label">Part</p></div>
@@ -164,12 +165,10 @@ export default function PartForm({ onClose, onSuccess }) {
                         <div key={index} style={{ marginBottom: "15px", display: "flex", gap: "10px", alignItems: "flex-end" }}>
                             <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
                                 <Select
-                                    value={parts.find(p => p.id === item.partId) || null}
-                                    onChange={(selected) => handleItemChange(index, "partId", selected.id)}
-                                    options={parts.map(part => ({
-                                    value: part.id,
-                                    label: `${part.brand} - ${part.name} (Stock: ${part.stock}, Price: ${part.price || 0}€)`
-                                    }))}
+                                    name="part"
+                                    options={parts}
+                                    value={parts.find(part => part.value === item.partId)}
+                                    onChange={(selected) => handleItemChange(index, "partId", selected.value)}
                                     placeholder="Select a part"
                                     isSearchable={true}
                                     components={{
