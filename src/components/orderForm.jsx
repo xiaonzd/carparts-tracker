@@ -64,7 +64,7 @@ export default function PartForm({ onClose, onSuccess }) {
     useEffect(() => {
         let sum = 0;
         items.forEach(item => {
-            const part = parts.find(p => p.id === item.partId);
+            const part = parts.find(part => part.value === item.partId);
             if (part) sum += (part.price || 0) * item.quantity;
         });
         setTotalPrice(sum);
@@ -85,7 +85,7 @@ export default function PartForm({ onClose, onSuccess }) {
         }
 
         const orderParts = items.map(item => {
-            const part = parts.find(p => p.id === item.partId);
+            const part = parts.find(part => part.value === item.partId);
             return {
                 order_id: orderData.id,
                 part_id: item.partId,
@@ -107,7 +107,7 @@ export default function PartForm({ onClose, onSuccess }) {
         for (const item of items) {
             if (!item.partId) continue;
             
-            const part = parts.find(p => p.id === item.partId);
+            const part = parts.find(part => part.value === item.partId);
             if (!part) continue;
             
             const newStock = (part.stock || 0) - item.quantity;
