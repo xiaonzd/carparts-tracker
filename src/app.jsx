@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/dashboard";
-import AllClients from "./pages/allClients";
-import AllOrders from "./pages/allOrders";
-import AllParts from "./pages/allParts";
+import Dashboard from "./pages/Dashboard";
+import AllClients from "./pages/AllClients";
+import AllOrders from "./pages/AllOrders";
+import AllParts from "./pages/AllParts";
 
 export default function App() {
   return (
@@ -11,6 +11,7 @@ export default function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/clients" element={<AllClients />} />
         <Route path="/orders" element={<AllOrders />} />
+        <Route path ="/orders/:id" element={<Order />} />
         <Route path="/parts" element={<AllParts />} />
       </Routes>
     </BrowserRouter>
