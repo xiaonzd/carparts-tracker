@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { dataGridStyles } from "../components/dataGridStyles";
 import Card from "../components/Card";
@@ -7,6 +8,7 @@ import Header from "../components/Header";
 
 export default function AllClients() {
     const [clients, setClients] = useState([]);
+    const navigate = useNavigate();
 
     useEffect (() => {
         const fetchClients = async () => {
@@ -63,6 +65,7 @@ export default function AllClients() {
                     disableColumnSelector
                     disableColumnFilter
                     disableColumnMenu
+                    onRowClick={(params) => navigate(`/clients/${params.row.id}`)}
                     sx={dataGridStyles}
                 />
             </Card>

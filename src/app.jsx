@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import AllClients from "./pages/AllClients";
+import Client from "./pages/Client";
 import AllOrders from "./pages/AllOrders";
 import Order from "./pages/Order";
 import AllParts from "./pages/AllParts";
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/clients" element={<AllClients />} />
+        <Route path="/clients/:id" element={<Client />} />
         <Route path="/orders" element={<AllOrders />} />
         <Route path ="/orders/:id" element={<Order />} />
         <Route path="/parts" element={<AllParts />} />
