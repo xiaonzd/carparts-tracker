@@ -14,15 +14,15 @@ export default function QuickActions() {
         <>
             <Card title="Quick Actions">
                 <button className="button orange" onClick={() => setActiveForm("order")}>
-                    <BsCart2 style={icon} />New Order
+                    <BsCart2 className="button-icon" />New Order
                 </button>
 
                 <button className="button" onClick={() => setActiveForm("client")}>
-                    <BsPeople style={icon} />New Client
+                    <BsPeople className="button-icon" />New Client
                 </button>
 
                 <button className="button" onClick={() => setActiveForm("part")}>
-                    <BsBoxSeam style={icon} />New Part
+                    <BsBoxSeam className="button-icon" />New Part
                 </button>
 
                 {activeForm === "client" && (
@@ -65,8 +65,4 @@ export default function QuickActions() {
 
         </>
     );
-}
-
-const icon = {
-    marginRight: "8px"
 }

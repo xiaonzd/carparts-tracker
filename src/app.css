@@ -77,6 +77,10 @@ body {
   color: rgb(33, 196, 93) !important;
 }
 
+.button-icon {
+  margin-right: 8px;
+}
+
 .container-inline {
   display: flex;
   justify-content: space-between;
@@ -186,6 +190,10 @@ select.form-input {
 
 .red {
   color: rgb(220, 40, 40);
+}
+
+.gray {
+  color: rgb(115, 123, 140);
 }
 
 .overlay {
