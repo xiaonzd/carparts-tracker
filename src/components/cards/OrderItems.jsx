@@ -2,7 +2,7 @@ import Card from "../Card";
 import { DataGrid } from "@mui/x-data-grid";
 import { dataGridStyles } from "../dataGridStyles";
 
-export default function OrderDetails({ order }) {
+export default function OrderItems({ order }) {
     const formattedPrice = (price) => {
         return new Intl.NumberFormat("pt-PT", {
             style: "currency",

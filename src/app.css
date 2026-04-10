@@ -11,6 +11,10 @@ body {
   padding-bottom: 20px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .MuiChartsTooltip-root * {
   background-color: rgb(21, 24, 30) !important;
   border-radius: 8px !important;
@@ -191,6 +195,8 @@ select.form-input {
 .status {
   padding: 4px 8px;
   border-radius: 8px;
+  background-color: rgb(115, 123, 140, 0.1);
+  color: rgb(115, 123, 140);
 }
 
 .status.processing {
