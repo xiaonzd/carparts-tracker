@@ -188,6 +188,26 @@ select.form-input {
   margin: 0;
 }
 
+.status {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.status.processing {
+  background-color: rgb(249, 156, 16, 0.1);
+  color: rgb(249, 156, 16);
+}
+
+.status.shipped {
+  background-color: rgb(100, 149, 237, 0.1);
+  color: rgb(100, 149, 237);
+}
+
+.status.delivered {
+  background-color: rgb(33, 196, 93, 0.1);
+  color: rgb(33, 196, 93);
+}
+
 .red {
   color: rgb(220, 40, 40);
 }

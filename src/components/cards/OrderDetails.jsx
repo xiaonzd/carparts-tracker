@@ -1,5 +1,6 @@
 import Card from "../Card";
 import { BsArrowRepeat  } from "react-icons/bs";
+import { statusMapping } from "./../statusMapping";
 
 export default function OrderStatus({ order }) {
     const formattedTotalPrice = (price) => {
@@ -21,7 +22,9 @@ export default function OrderStatus({ order }) {
         <Card title="Order Details">
             <div className="container-inline">
                 <p className="card-text">Status</p>
-                <p className="card-text gray">{order?.status}</p>
+                <p className={`card-text gray ${statusMapping[order?.status] || "default"}`}>
+                    {order?.status}
+                </p>
             </div>
 
             <div className="container-inline">

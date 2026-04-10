@@ -5,6 +5,7 @@ import { dataGridStyles } from "../components/dataGridStyles";
 import Card from "../components/Card";
 import { supabase } from "../supabaseClient";
 import Header from "../components/Header";
+import { statusMapping } from "../components/statusMapping";
 
 export default function AllOrders() {
     const [orders, setOrders] = useState([]);
@@ -62,7 +63,18 @@ export default function AllOrders() {
                         { field: "parts", headerName: "Parts", flex: 1 },
                         { field: "created_at", headerName: "Date", width: 150 },
                         { field: "total_price", headerName: "Total Price", width: 150 },
-                        { field: "status", headerName: "Status", width: 150 },
+                        { field: "status", headerName: "Status", width: 150,
+                            renderCell: (params) => {
+                                const className =
+                                    statusMapping[params.value] || "default";
+
+                                return (
+                                    <span className={`card-text gray ${className}`}>
+                                        {params.value}
+                                    </span>
+                                );
+                            }
+                        },
                     ]}
                     initialState={{
                         pagination: { paginationModel: { pageSize: 10 } },

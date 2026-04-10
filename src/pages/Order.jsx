@@ -29,7 +29,7 @@ export default function Order() {
 
     return (
         <div className="page-grid">
-            <Header title="CarParts Tracker" />
+            <Header title="Order"/>
             <div className="container-inline">
                 <OrderDetails order={order} />
                 <div style={{ flex: 0.5, display: "flex", flexDirection: "column", gap: "20px" }}>

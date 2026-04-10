@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { dataGridStyles } from "./../dataGridStyles";
 import Card from "../Card";
 import { supabase } from "../../supabaseClient";
+import { statusMapping } from "../statusMapping";
 
 export default function RecentOrders() {
     const [orders, setOrders] = useState([]);
@@ -57,7 +58,18 @@ export default function RecentOrders() {
                     { field: "parts", headerName: "Parts", flex: 1 },
                     { field: "created_at", headerName: "Date", width: 150 },
                     { field: "total_price", headerName: "Total Price", width: 150 },
-                    { field: "status", headerName: "Status", width: 150 },
+                    { field: "status", headerName: "Status", width: 150,
+                        renderCell: (params) => {
+                            const className =
+                                statusMapping[params.value] || "default";
+
+                            return (
+                                <span className={`card-text gray ${className}`}>
+                                    {params.value}
+                                </span>
+                            );
+                        }
+                    },
                 ]}
                 initialState={{
                     pagination: { paginationModel: { pageSize: 10 } },
