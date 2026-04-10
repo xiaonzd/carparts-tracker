@@ -1,13 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 
-export default function ClientForm({ onClose, onSuccess }) {
+export default function ClientForm({ onClose, onSuccess, client }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
 
+    // if a client is provided, pre-fill the form fields
+    useEffect(() => {
+        if (client) {
+            setName(client.name);
+            setEmail(client.email);
+            setPhone(client.phone);
+        }
+    }, [client]);
+
     const handleSubmit = async (e) => {
-        e.preventDefault(); // prevent refreshing the page on submit
+        e.preventDefault();
+
+        if (client) {
+            // update existing client
+            const { error } = await supabase
+                .from("clients")
+                .update({ name, email, phone })
+                .eq("id", client.id);
+
+            if (error) {
+                console.log("Error updating client:", error);
+                return;
+            }
+            onClose();
+            onSuccess(true);
+            return;
+        }
 
         const { error } = await supabase
             .from("clients")
@@ -32,7 +57,7 @@ export default function ClientForm({ onClose, onSuccess }) {
     return (
         <div className="overlay">
             <div className="modal">
-                <h2 className="title">New Client</h2>
+                <h2 className="title">{client ? "Edit Client" : "New Client"}</h2>
 
                 <button className="close-button" onClick={onClose}>
                 ✕
@@ -51,7 +76,7 @@ export default function ClientForm({ onClose, onSuccess }) {
                         <label className="form-label" htmlFor="phone">Phone</label>
                         <input className="form-input" type="text" id="phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </div>
-                    <button className="button orange" type="submit">Create</button>
+                    <button className="button orange" type="submit">{client ? "Save" : "Create"}</button>
                 </form>
             </div>
         </div>
