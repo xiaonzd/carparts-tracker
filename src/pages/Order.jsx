@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabaseClient";
-import OrderProfileDetails from "./OrderProfileDetails";
-import OrderDetails from "./OrderDetails";
+import { useParams } from "react-router-dom";
+import { supabase } from "../supabaseClient";
+import Header from "../components/Header";
+import OrderProfileDetails from "./../components/cards/OrderProfileDetails";
+import OrderDetails from "./../components/cards/OrderDetails";
 
 export default function Order() {
     const [order, setOrder] = useState(null);
@@ -11,7 +13,7 @@ export default function Order() {
         const fetchOrder = async () => {
             const { data, error } = await supabase
                 .from("orders")
-                .select("id, created_at, status, total_price, order_parts (parts (name, brand)), clients (name)")
+                .select("id, created_at, status, total_price, order_parts (quantity, parts (name, brand, price)), clients (name, email, phone)")
                 .eq("id", orderId)
                 .single();
 
@@ -26,8 +28,11 @@ export default function Order() {
 
     return (
         <div className="page-grid">
-            <OrderProfileDetails order={order} />
-            <OrderDetails order={order} />
+            <Header title="CarParts Tracker" />
+            <div className="container-inline">
+                <OrderProfileDetails order={order} />
+                <OrderDetails order={order} />
+            </div>
         </div>
     )
 }

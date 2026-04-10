@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import AllClients from "./pages/AllClients";
 import AllOrders from "./pages/AllOrders";
+import Order from "./pages/Order";
 import AllParts from "./pages/AllParts";
 
 export default function App() {
