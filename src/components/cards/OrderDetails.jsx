@@ -1,46 +1,42 @@
 import Card from "../Card";
-import { DataGrid } from "@mui/x-data-grid";
-import { dataGridStyles } from "./../dataGridStyles";
+import { BsArrowRepeat  } from "react-icons/bs";
 
-export default function OrderDetails({ order }) {
-    const formattedPrice = (price) => {
+export default function OrderStatus({ order }) {
+    const formattedTotalPrice = (price) => {
         return new Intl.NumberFormat("pt-PT", {
             style: "currency",
             currency: "EUR",
         }).format(price);
     }
 
-    const rows = order?.order_parts.map((op, index) => ({
-        id: index,
-        name: op.parts.name,
-        brand: op.parts.brand,
-        quantity: op.quantity,
-        price: formattedPrice(op.parts.price)
-    }));
+    const formattedDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear().toString();
+        return `${day}/${month}/${year}`;
+    };
 
-    const columns = [
-        { field: "name", headerName: "Part", flex: 1 },
-        { field: "brand", headerName: "Brand", flex: 1 },
-        { field: "quantity", headerName: "Quantity", width: 150 },
-        { field: "price", headerName: "Price", width: 150 }
-    ];
     return (
         <Card title="Order Details">
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
-                    pagination: { paginationModel: { pageSize: 10 } },
-                }}
-                pageSizeOptions={[10, 25, 50, 100, { value: -1, label: 'All' }]}
-                disableCheckboxSelection
-                disableColumnResize
-                disableRowSelectionOnClick
-                disableColumnSelector
-                disableColumnFilter
-                disableColumnMenu
-                sx={dataGridStyles}
-            />
-        </Card>
+            <div className="container-inline">
+                <p className="card-text">Status</p>
+                <p className="card-text gray">{order?.status}</p>
+            </div>
+
+            <div className="container-inline">
+                <p className="card-text">Total Price</p>
+                <p className="card-text gray">{formattedTotalPrice(order?.total_price)}</p>
+            </div>
+
+            <div className="container-inline">
+                <p className="card-text">Order Date</p>
+                <p className="card-text gray">{formattedDate(order?.created_at)}</p>
+            </div>
+            
+            <button className="button">
+                <BsArrowRepeat className="button-icon" />Update Status
+            </button>
+        </Card> 
     )
 }
