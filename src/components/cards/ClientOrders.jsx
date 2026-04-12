@@ -61,6 +61,9 @@ export default function ClientOrders({ orders }) {
                 disableColumnSelector
                 disableColumnFilter
                 disableColumnMenu
+                localeText={{
+                    noRowsLabel: "No recorded orders for this client",
+                }}
                 sx={dataGridStyles}
                 />
         </Card>

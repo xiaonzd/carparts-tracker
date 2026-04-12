@@ -84,6 +84,9 @@ export default function RecentOrders() {
                 disableColumnFilter
                 disableColumnMenu
                 onRowClick={(params) => navigate(`/orders/${params.row.id}`)}
+                localeText={{
+                    noRowsLabel: "No recorded orders",
+                }}
                 sx={dataGridStyles}
             />
         </Card>

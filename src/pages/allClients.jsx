@@ -66,6 +66,9 @@ export default function AllClients() {
                     disableColumnFilter
                     disableColumnMenu
                     onRowClick={(params) => navigate(`/clients/${params.row.id}`)}
+                    localeText={{
+                    noRowsLabel: "No recorded clients",
+                }}
                     sx={dataGridStyles}
                 />
             </Card>
