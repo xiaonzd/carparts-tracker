@@ -45,5 +45,6 @@ export const dataGridStyles = {
     },
     "& .MuiDataGrid-columnSeparator": {
         display: "none",
-    }
+    },
+    "--DataGrid-t-color-border-base": "rgb(39, 44, 52) !important",
 };
