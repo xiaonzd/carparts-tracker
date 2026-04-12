@@ -5,6 +5,7 @@ import Client from "./pages/Client";
 import AllOrders from "./pages/AllOrders";
 import Order from "./pages/Order";
 import AllParts from "./pages/AllParts";
+import Part from "./pages/Part";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/orders" element={<AllOrders />} />
         <Route path ="/orders/:id" element={<Order />} />
         <Route path="/parts" element={<AllParts />} />
+        <Route path="/parts/:id" element={<Part />} />
       </Routes>
     </BrowserRouter>
   );
