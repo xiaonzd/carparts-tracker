@@ -35,7 +35,7 @@ export default function Order() {
                 <OrderItems order={order} />
                 <div style={{ flex: 0.5, display: "flex", flexDirection: "column", gap: "20px" }}>
                     <OrderProfileDetails order={order} />
-                    <OrderDetails order={order}  refetchOrder={fetchOrder} />
+                    <OrderDetails order={order} refetchOrder={fetchOrder} />
                 </div>
             </div>
         </div>

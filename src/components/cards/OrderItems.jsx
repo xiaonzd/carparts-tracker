@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Card from "../Card";
 import { DataGrid } from "@mui/x-data-grid";
 import { dataGridStyles } from "../dataGridStyles";
 
 export default function OrderItems({ order }) {
+    const navigate = useNavigate();
+
     const formattedPrice = (price) => {
         return new Intl.NumberFormat("pt-PT", {
             style: "currency",
@@ -39,6 +42,7 @@ export default function OrderItems({ order }) {
                 disableColumnSelector
                 disableColumnFilter
                 disableColumnMenu
+                onRowClick={(params) => navigate(`/parts/${order.order_parts[params.row.id].parts.id}`)}
                 sx={dataGridStyles}
             />
         </Card>

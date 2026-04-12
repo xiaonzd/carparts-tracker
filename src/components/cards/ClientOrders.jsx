@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Card from "../Card";
 import { DataGrid } from "@mui/x-data-grid";
 import { dataGridStyles } from "../dataGridStyles";
 import { statusMapping } from "../statusMapping";
 
 export default function ClientOrders({ orders }) {
+    const navigate = useNavigate();
 
     const formattedDate = (dateString) => {
         const date = new Date(dateString);
