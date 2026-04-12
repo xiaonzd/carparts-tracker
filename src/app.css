@@ -11,7 +11,8 @@ body {
   padding-bottom: 20px;
 }
 
-.pointer {
+.pointer,
+.MuiDataGrid-cell {
   cursor: pointer;
 }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { dataGridStyles } from "./../dataGridStyles";
 import Card from "../Card";
@@ -7,6 +8,7 @@ import { statusMapping } from "../statusMapping";
 
 export default function RecentOrders() {
     const [orders, setOrders] = useState([]);
+    const navigate = useNavigate();
 
     useEffect (() => {
         const fetchOrders = async () => {
@@ -81,6 +83,7 @@ export default function RecentOrders() {
                 disableColumnSelector
                 disableColumnFilter
                 disableColumnMenu
+                onRowClick={(params) => navigate(`/orders/${params.row.id}`)}
                 sx={dataGridStyles}
             />
         </Card>
