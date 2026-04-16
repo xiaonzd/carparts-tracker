@@ -6,7 +6,7 @@
 
 A full-stack inventory and order management dashboard for car parts businesses, designed to simplify stock tracking, client management, and sales monitoring.
 
-A web application built with React and modern UI tools, focused on delivering a fast and intuitive business management experience.
+Built with React and modern UI tools, focused on delivering a fast and intuitive business management experience.
 Manage clients, inventory, and orders in one centralized system with real-time updates and structured data tracking.
 
 ## 🌐 Tech Stack
