@@ -105,3 +105,4 @@ Manage clients, inventory, and orders in one centralized system with real-time u
 - Export reports (PDF, CSV)
 - Mobile optimization
 - Import clients, parts and orders
+- Add car model category to parts and clients
