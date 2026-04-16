@@ -13,7 +13,7 @@ export default function Order() {
     const fetchOrder = useCallback(async () => {
         const { data, error } = await supabase
             .from("orders")
-            .select("id, created_at, status, total_price, order_parts (quantity, parts (name, brand, price)), clients (id, name, email, phone)")
+            .select("id, created_at, status, total_price, order_parts (quantity, parts (id, name, brand, price)), clients (id, name, email, phone)")
             .eq("id", orderId)
             .single();
 

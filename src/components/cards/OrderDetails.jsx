@@ -37,9 +37,9 @@ export default function OrderDetails({ order, refetchOrder }) {
 
     const handleStatusButton = async () => {
         if (isEditingStatus) {
-            await handleUpdateStatus(); // save
+            await handleUpdateStatus();
         } else {
-            setIsEditingStatus(true); // enter edit mode
+            setIsEditingStatus(true);
         }
     };
 
